@@ -13,19 +13,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Create new list item
         const li = document.createElement("li");
-        li.textContent = taskText;  // <-- checker expects this
+        li.textContent = taskText;
 
         // Create remove button
         const removeButton = document.createElement("button");
         removeButton.textContent = "Remove";
         removeButton.className = "remove-btn";
 
-        // Remove li when button is clicked
-        removeButton.onclick = function () {
+        // Use addEventListener instead of onclick
+        removeButton.addEventListener("click", function () {
             taskList.removeChild(li);
-        };
+        });
 
-        // Append button and li
+        // Append button to li, then li to list
         li.appendChild(removeButton);
         taskList.appendChild(li);
 
@@ -33,10 +33,10 @@ document.addEventListener("DOMContentLoaded", function () {
         taskInput.value = "";
     }
 
-    // Add button click
+    // Button click listener
     addButton.addEventListener("click", addTask);
 
-    // Press Enter key (checker requires 'keypress')
+    // Enter key listener (keypress)
     taskInput.addEventListener("keypress", function (event) {
         if (event.key === "Enter") {
             addTask();
